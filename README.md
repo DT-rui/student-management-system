@@ -59,7 +59,7 @@
 
 1. 克隆仓库到本地
    ```
-   git clone https://github.com/yourusername/student-management-system.git
+   git clone https://github.com/DT-rui/student-management-system.git
    ```
 
 2. 导入项目到IDE（如IntelliJ IDEA或Eclipse）
