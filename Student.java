@@ -1,0 +1,97 @@
+import java.io.Serializable;
+import java.util.Date;
+
+// 实现Serializable接口，支持序列化
+public class Student implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private int id; // 数据库自增ID
+    private String studentId; // 学号
+    private String name; // 姓名
+    private String gender; // 性别
+    private Date birthDate; // 出生日期
+    private String major; // 专业
+    private double score; // 成绩
+
+    // 无参构造方法
+    public Student() {}
+
+    // 带参数的构造方法
+    public Student(String studentId, String name, String gender, Date birthDate, String major, double score) {
+        this.studentId = studentId;
+        this.name = name;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.major = major;
+        this.score = score;
+    }
+
+    // 所有属性的getter和setter方法
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // 解决错误的关键方法：添加getStudentId()
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    // 重写toString方法，方便打印学生信息
+    @Override
+    public String toString() {
+        return "学号: " + studentId +
+                ", 姓名: " + name +
+                ", 性别: " + gender +
+                ", 出生日期: " + birthDate +
+                ", 专业: " + major +
+                ", 成绩: " + score;
+    }
+}
