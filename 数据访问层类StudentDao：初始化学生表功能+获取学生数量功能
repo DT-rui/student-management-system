@@ -15,3 +15,22 @@
             e.printStackTrace();
         }
     }
+
+
+//
+
+
+    public static int getStudentCount() {
+        String sql = "SELECT COUNT(*) AS count FROM student";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
