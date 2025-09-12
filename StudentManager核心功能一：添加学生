@@ -1,0 +1,50 @@
+    public void addStudent(Scanner scanner) {
+        try {
+            System.out.println("\n===== 添加学生 =====");
+
+            System.out.print("请输入学号: ");
+            String studentId = scanner.nextLine().trim();
+
+            // 检查学号是否已存在
+            if (StudentDao.queryStudentByStudentId(studentId) != null) {
+                System.out.println("错误: 该学号已存在!");
+                return;
+            }
+
+            System.out.print("请输入姓名: ");
+            String name = scanner.nextLine().trim();
+
+            System.out.print("请输入性别(男/女): ");
+            String gender = scanner.nextLine().trim();
+            if (!"男".equals(gender) && !"女".equals(gender)) {
+                System.out.println("错误: 性别只能是'男'或'女'!");
+                return;
+            }
+
+            System.out.print("请输入出生日期(yyyy-MM-dd): ");
+            String birthDateStr = scanner.nextLine().trim();
+            Date birthDate = sdf.parse(birthDateStr);
+
+            System.out.print("请输入专业: ");
+            String major = scanner.nextLine().trim();
+
+            System.out.print("请输入成绩: ");
+            double score = Double.parseDouble(scanner.nextLine().trim());
+            if (score < 0 || score > 100) {
+                System.out.println("错误: 成绩必须在0-100之间!");
+                return;
+            }
+
+            // 创建学生对象并保存
+            Student student = new Student(studentId, name, gender, birthDate, major, score);
+            if (StudentDao.addStudent(student)) {
+                System.out.println("添加成功!");
+            } else {
+                System.out.println("添加失败!");
+            }
+        } catch (ParseException e) {
+            System.out.println("错误: 日期格式不正确，请使用yyyy-MM-dd格式!");
+        } catch (NumberFormatException e) {
+            System.out.println("错误: 成绩格式不正确，请输入数字!");
+        }
+    }
