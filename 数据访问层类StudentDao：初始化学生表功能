@@ -1,0 +1,17 @@
+    public static void initTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS student (" +
+                "id INT PRIMARY KEY AUTO_INCREMENT," +
+                "studentId VARCHAR(20) UNIQUE NOT NULL," +
+                "name VARCHAR(50) NOT NULL," +
+                "gender VARCHAR(10) NOT NULL," +
+                "birthDate DATE," +
+                "major VARCHAR(50)," +
+                "score DOUBLE)";
+
+        try (Connection conn = DBUtil.getConnection();
+             Statement stmt = conn.createStatement()) {
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
