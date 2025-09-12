@@ -1,0 +1,17 @@
+public void queryAllStudents() {
+        System.out.println("\n===== 所有学生信息 =====");
+        List<Student> students = StudentDao.queryAllStudents();
+
+        if (students.isEmpty()) {
+            System.out.println("没有学生信息!");
+            return;
+        }
+
+        // 按学号排序
+        Collections.sort(students, Comparator.comparing(Student::getStudentId));
+
+        for (Student student : students) {
+            System.out.println(student);
+        }
+        System.out.println("共 " + students.size() + " 名学生");
+    }
