@@ -1,0 +1,20 @@
+public static boolean updateStudent(Student student) {
+        String sql = "UPDATE student SET name = ?, gender = ?, birthDate = ?, major = ?, score = ? " +
+                "WHERE studentId = ?";
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, student.getName());
+            pstmt.setString(2, student.getGender());
+            pstmt.setDate(3, new java.sql.Date(student.getBirthDate().getTime()));
+            pstmt.setString(4, student.getMajor());
+            pstmt.setDouble(5, student.getScore());
+            pstmt.setString(6, student.getStudentId());
+
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
