@@ -1,0 +1,24 @@
+ public static List<Student> queryAllStudents() {
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT * FROM student ORDER BY studentId";
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Student student = new Student();
+                student.setId(rs.getInt("id"));
+                student.setStudentId(rs.getString("studentId"));
+                student.setName(rs.getString("name"));
+                student.setGender(rs.getString("gender"));
+                student.setBirthDate(rs.getDate("birthDate"));
+                student.setMajor(rs.getString("major"));
+                student.setScore(rs.getDouble("score"));
+                students.add(student);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
